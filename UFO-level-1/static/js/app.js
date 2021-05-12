@@ -29,6 +29,8 @@ form.on("submit",runDate);
 
 function runDate() {
 
+
+
     d3.event.preventDefault();
 
     var inputElement = d3.select("#datetime");
@@ -36,18 +38,21 @@ function runDate() {
     var inputValue = inputElement.property("value");
 
     console.log(inputValue);
-    //console.log(tableData);
+    
 
     var filteredData = tableData.filter(sighting => sighting.datetime === inputValue);
 
     console.log(filteredData);
 
+    //Clear existing table
 
-    //Fill table again with filtered data
+    tbody.html('');
 
-    data.forEach((filteredData) => {
+    //Fill table with filtered data
+
+    filteredData.forEach((sighting) => {
         var row = tbody.append("tr");
-        Object.entries(filteredData).forEach(([key, value]) => {
+        Object.entries(sighting).forEach(([key, value]) => {
           var cell = row.append("td");
           cell.text(value);
         });
