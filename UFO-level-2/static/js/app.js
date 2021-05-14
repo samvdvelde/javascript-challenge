@@ -46,18 +46,47 @@ function runFilter() {
     var shapeValue = shapeElement.property("value");
 
 
+    
+    var filterValues = {datetime:dateValue, city:cityValue, state:stateValue, country:countryValue, shape:shapeValue}
+
+    function clean(obj) {
+        for (var propName in obj) {
+          if (obj[propName] === "") {
+            delete obj[propName];
+          }
+        }
+        return obj
+      };
 
 
-    console.log(dateValue);
+    var cleanFilters = clean(filterValues);
+
+    console.log(filterValues);
+    console.log(cleanFilters);
     
 
-    var filteredData = tableData.filter(sighting => sighting.datetime === dateValue)
-                                .filter(sighting => sighting.city === cityValue)
-                                .filter(sighting => sighting.state === stateValue)
-                                .filter(sighting => sighting.country === countryValue)
-                                .filter(sighting => sighting.shape === shapeValue);
+   
+    Object.entries(cleanFilters).forEach(([key, value]) => {
+      
+
+            var filteredData = tableData.filter(sighting => sighting.key === value);
+            return filteredData;
+    
+        });
+
 
     console.log(filteredData);
+        
+  
+
+
+    // var filteredData = tableData.filter(sighting => sighting.datetime === dateValue)
+    //                             .filter(sighting => sighting.city === cityValue)
+    //                             .filter(sighting => sighting.state === stateValue)
+    //                             .filter(sighting => sighting.country === countryValue)
+    //                             .filter(sighting => sighting.shape === shapeValue);
+
+    // console.log(filteredData);
 
     //Clear existing table
 
