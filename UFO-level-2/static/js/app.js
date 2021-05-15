@@ -46,23 +46,6 @@ function runFilter() {
 
 
     
-    var filterValues = {datetime:dateValue, city:cityValue, state:stateValue, country:countryValue, shape:shapeValue}
-
-    function clean(obj) {
-        for (var propName in obj) {
-          if (obj[propName] === "") {
-            delete obj[propName];
-          }
-        }
-        return obj
-      };
-
-
-    var cleanFilters = clean(filterValues);
-
-    console.log(filterValues);
-    console.log(cleanFilters);
-    
 
 
     var filteredData = tableData.filter(sighting => sighting.datetime === dateValue || dateValue === "")
