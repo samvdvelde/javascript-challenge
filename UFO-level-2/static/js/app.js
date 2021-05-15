@@ -19,7 +19,6 @@ tableData.forEach((sighting) => {
 
 var button = d3.select("#filter-btn");
 
-// Created form id inside form tag in html
 var form = d3.select("#form")
 
 
@@ -65,28 +64,14 @@ function runFilter() {
     console.log(cleanFilters);
     
 
-   
-    Object.entries(cleanFilters).forEach(([key, value]) => {
-      
 
-            var filteredData = tableData.filter(sighting => sighting.key === value);
-            return filteredData;
-    
-        });
-
+    var filteredData = tableData.filter(sighting => sighting.datetime === dateValue || dateValue === "")
+                                .filter(sighting => sighting.city === cityValue || cityValue === "")
+                                .filter(sighting => sighting.state === stateValue || stateValue === "")
+                                .filter(sighting => sighting.country === countryValue || countryValue === "")
+                                .filter(sighting => sighting.shape === shapeValue || shapeValue === "");
 
     console.log(filteredData);
-        
-  
-
-
-    // var filteredData = tableData.filter(sighting => sighting.datetime === dateValue)
-    //                             .filter(sighting => sighting.city === cityValue)
-    //                             .filter(sighting => sighting.state === stateValue)
-    //                             .filter(sighting => sighting.country === countryValue)
-    //                             .filter(sighting => sighting.shape === shapeValue);
-
-    // console.log(filteredData);
 
     //Clear existing table
 
